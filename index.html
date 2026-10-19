@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hollow Knight Free 4046 Edition</title>
+  <title>Unblocked Game Portal | Hollow Knight, Cobb Can Move & More</title>
   <link rel="icon" href="https://cdn.jsdelivr.net/gh/aukak/hollow-knight@2fc2e7149f0d5b2609b135ab48f00fd973930635/TemplateData/favicon.ico">
 
   <!-- GOOGLE ADSENSE OFFICIAL SCRIPT -->
@@ -15,6 +15,7 @@
       --sidebar-bg: #10121a;
       --border-color: #1e2230;
       --accent-color: #6366f1;
+      --accent-hover: #4f46e5;
     }
 
     * {
@@ -41,17 +42,23 @@
       overflow: hidden;
     }
 
-    /* FLOATING TOP-RIGHT FULLSCREEN BUTTON */
-    #fullscreen-btn {
+    /* TOP CONTROLS: GAME SELECTOR & FULLSCREEN */
+    #top-controls-bar {
       position: fixed;
-      top: 14px;
-      right: 180px;
+      top: 12px;
+      right: 185px;
       z-index: 1000;
-      background: rgba(30, 34, 53, 0.85);
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .top-btn {
+      background: rgba(30, 34, 53, 0.9);
       backdrop-filter: blur(8px);
       border: 1px solid rgba(255, 255, 255, 0.15);
       color: #fff;
-      padding: 8px 16px;
+      padding: 8px 14px;
       border-radius: 8px;
       font-size: 13px;
       font-weight: 600;
@@ -62,13 +69,30 @@
       box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
       transition: all 0.2s ease;
     }
-    #fullscreen-btn:hover {
+    .top-btn:hover {
       background: var(--accent-color);
       border-color: #818cf8;
       transform: translateY(-1px);
     }
 
-    /* SIDEBAR ADS CONTAINERS (160px wide standard skyscraper) */
+    /* GAME SELECTOR DROPDOWN */
+    .game-select-dropdown {
+      background: #181c2b;
+      color: #fff;
+      border: 1px solid #334155;
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      outline: none;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.4);
+    }
+    .game-select-dropdown:hover {
+      border-color: var(--accent-color);
+    }
+
+    /* SIDEBAR ADS (MULTIPLE REAL GOOGLE ADS PER SIDE) */
     .ad-sidebar {
       width: 170px;
       height: 100%;
@@ -78,25 +102,26 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
       flex-shrink: 0;
       padding: 8px 5px;
       z-index: 100;
-      overflow: hidden;
+      overflow-y: auto;
+      overflow-x: hidden;
+      gap: 12px;
+      scrollbar-width: thin;
     }
 
     .ad-label {
-      font-size: 10px;
+      font-size: 9px;
       letter-spacing: 1px;
       color: #64748b;
-      margin-bottom: 8px;
+      margin-bottom: 4px;
       text-transform: uppercase;
       font-weight: 700;
     }
 
     .ad-box {
       width: 160px;
-      height: 600px;
       background: rgba(255, 255, 255, 0.02);
       border: 1px dashed rgba(255, 255, 255, 0.1);
       border-radius: 4px;
@@ -106,13 +131,12 @@
       justify-content: center;
       position: relative;
       overflow: hidden;
+      flex-shrink: 0;
     }
+    .ad-box-skyscraper { height: 600px; }
+    .ad-box-rectangle { height: 250px; }
 
-    .adsbygoogle {
-      display: block !important;
-      width: 160px !important;
-      height: 600px !important;
-    }
+    .adsbygoogle { display: block !important; }
 
     .ad-placeholder-hint {
       position: absolute;
@@ -154,6 +178,31 @@
       outline: none;
     }
 
+    #generic-game-iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: none;
+      background: #000;
+    }
+
+    /* HUGE ANIMATED LOADING TEXT */
+    .huge-loading-text {
+      font-size: 46px;
+      font-weight: 900;
+      letter-spacing: 6px;
+      color: #ffffff;
+      text-shadow: 0 0 20px rgba(99, 102, 241, 0.8), 0 0 40px rgba(168, 85, 247, 0.6);
+      animation: pulseLoading 1.5s ease-in-out infinite alternate;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+
+    @keyframes pulseLoading {
+      0% { opacity: 0.6; transform: scale(0.97); letter-spacing: 4px; }
+      100% { opacity: 1; transform: scale(1.03); letter-spacing: 7px; }
+    }
+
     /* GAME LOADING OVERLAY */
     #game-loader-overlay {
       position: absolute;
@@ -167,35 +216,30 @@
       align-items: center;
       justify-content: center;
       z-index: 50;
-      padding: 20px;
+      padding: 16px;
+      overflow-y: auto;
     }
 
-    .loader-logo-title {
-      font-size: 40px;
+    .loader-game-name {
+      font-size: 28px;
       font-weight: 900;
-      letter-spacing: 4px;
+      letter-spacing: 3px;
       text-transform: uppercase;
       background: linear-gradient(180deg, #ffffff 0%, #9ca3af 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      margin-bottom: 8px;
-    }
-
-    .loader-subtitle {
-      font-size: 14px;
-      color: #94a3b8;
-      margin-bottom: 24px;
+      margin-bottom: 6px;
     }
 
     .progress-bar-outer {
-      width: 80%;
+      width: 85%;
       max-width: 480px;
-      height: 14px;
+      height: 16px;
       background: #11141f;
       border: 1px solid #334155;
       border-radius: 10px;
       overflow: hidden;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
     .progress-bar-inner {
@@ -211,19 +255,33 @@
       font-size: 13px;
       color: #cbd5e1;
       font-family: monospace;
-      margin-bottom: 16px;
+      margin-bottom: 12px;
+    }
+
+    .loader-ad-container {
+      margin: 10px 0;
+      background: rgba(16, 18, 26, 0.9);
+      border: 1px solid #2d3748;
+      border-radius: 8px;
+      padding: 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.5);
     }
 
     .loader-controls-preview {
       background: rgba(15, 23, 42, 0.7);
       border: 1px solid #334155;
       border-radius: 8px;
-      padding: 12px 20px;
-      font-size: 12px;
+      padding: 8px 16px;
+      font-size: 11px;
       color: #94a3b8;
       display: flex;
-      gap: 16px;
-      margin-top: 10px;
+      gap: 14px;
+      margin-top: 8px;
+      flex-wrap: wrap;
+      justify-content: center;
     }
 
     .key-badge {
@@ -234,22 +292,113 @@
       border: 1px solid #475569;
       font-weight: bold;
     }
+
+    /* ======================================================== */
+    /* 5-MINUTE AD BREAK INTERSTITIAL OVERLAY                  */
+    /* ======================================================== */
+    #ad-break-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(7, 9, 14, 0.95);
+      backdrop-filter: blur(12px);
+      z-index: 99999;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .ad-break-badge {
+      background: #ef4444;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 800;
+      padding: 4px 12px;
+      border-radius: 4px;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+
+    .ad-break-title {
+      font-size: 26px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+
+    .ad-break-subtitle {
+      font-size: 13px;
+      color: #94a3b8;
+      margin-bottom: 16px;
+    }
+
+    .ad-break-box {
+      background: #131722;
+      border: 1px solid #2e3852;
+      border-radius: 8px;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    }
+
+    #ad-break-skip-btn {
+      background: #334155;
+      color: #94a3b8;
+      border: none;
+      padding: 10px 24px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: not-allowed;
+      transition: all 0.2s;
+    }
+    #ad-break-skip-btn.can-skip {
+      background: #10b981;
+      color: #fff;
+      cursor: pointer;
+      box-shadow: 0 0 16px rgba(16, 185, 129, 0.6);
+    }
+    #ad-break-skip-btn.can-skip:hover {
+      background: #059669;
+      transform: scale(1.04);
+    }
   </style>
 </head>
 <body>
 
-  <!-- SINGLE TOP MENU BUTTON: FULLSCREEN -->
-  <button id="fullscreen-btn" onclick="toggleFullscreen()" title="Toggle Fullscreen">
-    <span>⛶</span>
-    <span>Fullscreen</span>
-  </button>
+  <!-- TOP BAR: GAME SELECTOR & FULLSCREEN -->
+  <div id="top-controls-bar">
+    <select class="game-select-dropdown" id="game-dropdown" onchange="switchGame(this.value)">
+      <option value="hollow-knight">🎮 Hollow Knight (WebGL)</option>
+      <option value="cobb-can-move">🏃 COBB CAN MOVE (v1.7)</option>
+      <option value="polytrack">🏎️ PolyTrack (Web Edition)</option>
+      <option value="info-desktop">ℹ️ Windows .EXE Games Info</option>
+    </select>
+
+    <button class="top-btn" onclick="toggleFullscreen()" title="Toggle Fullscreen">
+      <span>⛶</span>
+      <span>Fullscreen</span>
+    </button>
+  </div>
 
   <div id="app-container">
 
-    <!-- LEFT SIDEBAR: REAL GOOGLE ADSENSE SKYSCRAPER -->
+    <!-- ============================================== -->
+    <!-- LEFT SIDEBAR: REAL GOOGLE ADSENSE (MORE ADS)   -->
+    <!-- ============================================== -->
     <aside class="ad-sidebar" id="left-sidebar">
       <div class="ad-label">Advertisement</div>
-      <div class="ad-box">
+      
+      <!-- LEFT AD 1: 160x600 Skyscraper -->
+      <div class="ad-box ad-box-skyscraper">
         <div class="ad-placeholder-hint">
           <strong>Google Ad</strong><br>
           160x600 Skyscraper
@@ -264,14 +413,37 @@
           (adsbygoogle = window.adsbygoogle || []).push({});
         </script>
       </div>
+
+      <!-- LEFT AD 2: 160x250 Banner -->
+      <div class="ad-box ad-box-rectangle">
+        <div class="ad-placeholder-hint">
+          <strong>Google Ad</strong><br>
+          160x250 Banner
+        </div>
+        <ins class="adsbygoogle"
+             style="display:inline-block;width:160px;height:250px;"
+             data-ad-client="ca-pub-9627446045765085"
+             data-ad-slot="1234567891"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+      </div>
     </aside>
 
-    <!-- CENTER: HOLLOW KNIGHT WEBGL GAME -->
+    <!-- ============================================== -->
+    <!-- CENTER: GAME FRAME & LOADING ADS              -->
+    <!-- ============================================== -->
     <main id="game-center-area">
+      <!-- Loading Screen with HUGE LOADING TEXT & CENTER ADS -->
       <div id="game-loader-overlay">
-        <div class="loader-logo-title">Hollow Knight</div>
-        <div class="loader-subtitle">Free 4046 Edition</div>
         
+        <!-- PROMINENT ANIMATED LOADING TEXT -->
+        <div class="huge-loading-text">LOADING...</div>
+        
+        <div class="loader-game-name" id="loader-title">Hollow Knight</div>
+
         <div class="progress-bar-outer">
           <div class="progress-bar-inner" id="progress-bar-fill"></div>
         </div>
@@ -280,25 +452,46 @@
           CONNECTING TO CDN ASSETS...
         </div>
 
-        <div class="loader-controls-preview">
+        <!-- CENTER DISPLAY AD (SHOWN DURING ALL LOADING SCREENS) -->
+        <div class="loader-ad-container">
+          <div class="ad-label">Sponsored While Loading</div>
+          <ins class="adsbygoogle"
+               style="display:inline-block;width:300px;height:250px;"
+               data-ad-client="ca-pub-9627446045765085"
+               data-ad-slot="1234567892"
+               data-ad-format="auto"
+               data-full-width-responsive="true"></ins>
+          <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+          </script>
+        </div>
+
+        <div class="loader-controls-preview" id="loader-controls">
           <div><span class="key-badge">WASD / Arrows</span> Move</div>
           <div><span class="key-badge">Z</span> Jump</div>
           <div><span class="key-badge">X</span> Attack</div>
           <div><span class="key-badge">C</span> Dash</div>
-          <div><span class="key-badge">A</span> Soul / Spell</div>
+          <div><span class="key-badge">A</span> Soul / Heal</div>
+          <div><span class="key-badge">Tab</span> or <span class="key-badge">M</span> Quick Map</div>
           <div><span class="key-badge">Esc</span> Pause</div>
         </div>
       </div>
 
+      <!-- Canvas Frame (For Hollow Knight WebGL) -->
       <div id="game-frame-wrapper">
         <canvas id="unity-canvas" tabindex="1"></canvas>
+        <iframe id="generic-game-iframe" src="" allowfullscreen></iframe>
       </div>
     </main>
 
-    <!-- RIGHT SIDEBAR: REAL GOOGLE ADSENSE SKYSCRAPER -->
+    <!-- ============================================== -->
+    <!-- RIGHT SIDEBAR: REAL GOOGLE ADSENSE (MORE ADS)  -->
+    <!-- ============================================== -->
     <aside class="ad-sidebar" id="right-sidebar">
       <div class="ad-label">Advertisement</div>
-      <div class="ad-box">
+      
+      <!-- RIGHT AD 1: 160x600 Skyscraper -->
+      <div class="ad-box ad-box-skyscraper">
         <div class="ad-placeholder-hint">
           <strong>Google Ad</strong><br>
           160x600 Skyscraper
@@ -313,26 +506,233 @@
           (adsbygoogle = window.adsbygoogle || []).push({});
         </script>
       </div>
+
+      <!-- RIGHT AD 2: 160x250 Banner -->
+      <div class="ad-box ad-box-rectangle">
+        <div class="ad-placeholder-hint">
+          <strong>Google Ad</strong><br>
+          160x250 Banner
+        </div>
+        <ins class="adsbygoogle"
+             style="display:inline-block;width:160px;height:250px;"
+             data-ad-client="ca-pub-9627446045765085"
+             data-ad-slot="0987654322"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+      </div>
     </aside>
 
   </div>
 
+  <!-- ======================================================== -->
+  <!-- 5-MINUTE AD BREAK MODAL (TIMED RECURRING INTERSTITIAL)    -->
+  <!-- ======================================================== -->
+  <div id="ad-break-overlay">
+    <div class="ad-break-badge">Commercial Break</div>
+    <div class="ad-break-title">📺 5-Minute Ad Break</div>
+    <div class="ad-break-subtitle">Supporting free unblocked game servers • Resuming shortly</div>
+
+    <div class="ad-break-box">
+      <ins class="adsbygoogle"
+           style="display:inline-block;width:300px;height:250px;"
+           data-ad-client="ca-pub-9627446045765085"
+           data-ad-slot="1234567895"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+
+    <button id="ad-break-skip-btn" onclick="closeAdBreak()">Skip Ad in 5s...</button>
+  </div>
+
+  <!-- ============================================== -->
+  <!-- MULTI-GAME LOADER & AD BREAK ENGINE SCRIPT     -->
+  <!-- ============================================== -->
   <script>
+    let currentGame = "hollow-knight";
+    let unityInstanceRef = null;
+
+    // --- FULLSCREEN ---
     function toggleFullscreen() {
       const elem = document.getElementById('game-frame-wrapper');
       if (!document.fullscreenElement) {
-        if (elem.requestFullscreen) {
-          elem.requestFullscreen();
-        } else if (elem.webkitRequestFullscreen) {
-          elem.webkitRequestFullscreen();
-        }
+        if (elem.requestFullscreen) elem.requestFullscreen();
+        else if (elem.webkitRequestFullscreen) elem.webkitRequestFullscreen();
       } else {
-        if (document.exitFullscreen) {
-          document.exitFullscreen();
-        }
+        if (document.exitFullscreen) document.exitFullscreen();
       }
     }
 
+    // --- 5-MINUTE AD BREAK TIMER ---
+    const AD_BREAK_INTERVAL_MS = 5 * 60 * 1000; // 5 minutes
+    let adBreakTimer = null;
+    let skipCountdown = 5;
+    let skipInterval = null;
+
+    function startAdBreakTimer() {
+      if (adBreakTimer) clearInterval(adBreakTimer);
+      adBreakTimer = setInterval(triggerAdBreak, AD_BREAK_INTERVAL_MS);
+    }
+
+    function triggerAdBreak() {
+      const overlay = document.getElementById('ad-break-overlay');
+      const btn = document.getElementById('ad-break-skip-btn');
+      overlay.style.display = 'flex';
+      skipCountdown = 5;
+      btn.className = '';
+      btn.disabled = true;
+      btn.textContent = `Skip Ad in ${skipCountdown}s...`;
+
+      // Refresh ad units in overlay
+      try {
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      } catch (e) {}
+
+      if (skipInterval) clearInterval(skipInterval);
+      skipInterval = setInterval(() => {
+        skipCountdown--;
+        if (skipCountdown > 0) {
+          btn.textContent = `Skip Ad in ${skipCountdown}s...`;
+        } else {
+          clearInterval(skipInterval);
+          btn.disabled = false;
+          btn.className = 'can-skip';
+          btn.textContent = 'SKIP AD & RESUME GAME ▶';
+        }
+      }, 1000);
+    }
+
+    function closeAdBreak() {
+      const btn = document.getElementById('ad-break-skip-btn');
+      if (btn.disabled) return;
+      document.getElementById('ad-break-overlay').style.display = 'none';
+      if (skipInterval) clearInterval(skipInterval);
+      const canvas = document.getElementById('unity-canvas');
+      if (canvas) canvas.focus();
+    }
+
+    // Start 5-minute recurring timer
+    startAdBreakTimer();
+
+    // --- FIX FOR QUICK MAP (TAB & M KEYS) ---
+    window.addEventListener('keydown', function(e) {
+      const canvas = document.getElementById('unity-canvas');
+      if (e.key === 'Tab' || e.code === 'Tab' || e.keyCode === 9) {
+        e.preventDefault();
+        if (canvas) {
+          canvas.dispatchEvent(new KeyboardEvent('keydown', {
+            key: 'Tab', code: 'Tab', keyCode: 9, which: 9, bubbles: true
+          }));
+        }
+      } else if (e.key === 'm' || e.key === 'M') {
+        if (canvas) {
+          canvas.dispatchEvent(new KeyboardEvent('keydown', {
+            key: 'Tab', code: 'Tab', keyCode: 9, which: 9, bubbles: true
+          }));
+        }
+      }
+    }, { passive: false });
+
+    // --- GAME SWITCHER ---
+    function switchGame(gameKey) {
+      currentGame = gameKey;
+      const loader = document.getElementById('game-loader-overlay');
+      const loaderTitle = document.getElementById('loader-title');
+      const statusText = document.getElementById('loader-status');
+      const progressFill = document.getElementById('progress-bar-fill');
+      const canvas = document.getElementById('unity-canvas');
+      const iframe = document.getElementById('generic-game-iframe');
+      const controls = document.getElementById('loader-controls');
+
+      loader.style.display = 'flex';
+      loader.style.opacity = '1';
+      progressFill.style.width = '20%';
+
+      // Refresh loading screen ad
+      try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch(e){}
+
+      if (gameKey === 'hollow-knight') {
+        loaderTitle.textContent = 'Hollow Knight';
+        statusText.textContent = 'SWITCHING TO HOLLOW KNIGHT...';
+        iframe.style.display = 'none';
+        iframe.src = '';
+        canvas.style.display = 'block';
+        controls.innerHTML = `
+          <div><span class="key-badge">WASD / Arrows</span> Move</div>
+          <div><span class="key-badge">Z</span> Jump</div>
+          <div><span class="key-badge">X</span> Attack</div>
+          <div><span class="key-badge">C</span> Dash</div>
+          <div><span class="key-badge">A</span> Soul / Heal</div>
+          <div><span class="key-badge">Tab</span> or <span class="key-badge">M</span> Quick Map</div>
+          <div><span class="key-badge">Esc</span> Pause</div>
+        `;
+        setTimeout(() => {
+          progressFill.style.width = '100%';
+          setTimeout(() => { loader.style.display = 'none'; canvas.focus(); }, 400);
+        }, 1200);
+
+      } else if (gameKey === 'cobb-can-move') {
+        loaderTitle.textContent = 'COBB CAN MOVE (v1.7)';
+        statusText.textContent = 'LOADING HTML5 ENGINE & ASSETS...';
+        canvas.style.display = 'none';
+        iframe.style.display = 'block';
+        iframe.src = 'games/cobb-can-move/index.html';
+        controls.innerHTML = `
+          <div><span class="key-badge">Arrow Keys / WASD</span> Move & Jump</div>
+          <div><span class="key-badge">Space</span> Action</div>
+        `;
+        setTimeout(() => {
+          progressFill.style.width = '100%';
+          statusText.textContent = 'GAME READY!';
+          setTimeout(() => { loader.style.display = 'none'; iframe.focus(); }, 600);
+        }, 1500);
+
+      } else if (gameKey === 'polytrack') {
+        loaderTitle.textContent = 'PolyTrack (Online Racing)';
+        statusText.textContent = 'CONNECTING TO POLYTRACK SERVERS...';
+        canvas.style.display = 'none';
+        iframe.style.display = 'block';
+        iframe.src = 'https://polytrack.online/';
+        controls.innerHTML = `
+          <div><span class="key-badge">WASD / Arrows</span> Drive & Steer</div>
+          <div><span class="key-badge">R</span> Restart Run</div>
+        `;
+        setTimeout(() => {
+          progressFill.style.width = '100%';
+          statusText.textContent = 'TRACK READY!';
+          setTimeout(() => { loader.style.display = 'none'; iframe.focus(); }, 1200);
+        }, 1500);
+
+      } else if (gameKey === 'info-desktop') {
+        loaderTitle.textContent = 'Windows .EXE Games';
+        statusText.textContent = 'NOTICE REGARDING NATIVE WINDOWS GAMES';
+        canvas.style.display = 'none';
+        iframe.style.display = 'block';
+        iframe.srcdoc = `
+          <body style="background:#090a0f;color:#e2e8f0;font-family:sans-serif;padding:30px;line-height:1.6;">
+            <h2 style="color:#f87171;">⚠️ About One More Flip, TossOffice, WildFire, and Mindustry</h2>
+            <p>These games are compiled <strong>Windows .EXE application binaries</strong> (DirectX / x64 machine code). Web browsers cannot execute .exe files directly due to browser security sandboxing.</p>
+            <p>You can launch and play them directly on your Windows PC from your desktop folder:</p>
+            <ul>
+              <li><strong>One More Flip</strong>: Run <code>OneMoreFlip\\One More Flip.exe</code></li>
+              <li><strong>TossOffice</strong>: Run <code>TossOffice\\x86_64\\TossOffice_x86_64.exe</code></li>
+              <li><strong>WildFire</strong>: Run <code>WildFire v1.1.2.2 Windows\\WILDFIRE.exe</code></li>
+              <li><strong>Mindustry</strong>: Run <code>mindustry-windows-64-bit\\Mindustry.exe</code></li>
+            </ul>
+            <p style="color:#4ade80;">Enjoy <strong>Hollow Knight</strong>, <strong>Cobb Can Move</strong>, and <strong>PolyTrack</strong> directly inside your browser above!</p>
+          </body>
+        `;
+        progressFill.style.width = '100%';
+        setTimeout(() => { loader.style.display = 'none'; }, 400);
+      }
+    }
+
+    // --- HOLLOW KNIGHT WEBGL ENGINE ---
     const DB_NAME = "cachedb";
     const STORE_NAME = "files";
 
@@ -360,7 +760,7 @@
           tx.onerror = () => reject(tx.error);
         });
       } catch (e) {
-        console.warn("IndexedDB cache save skipped:", e);
+        console.warn("Cache write skipped:", e);
       }
     }
 
@@ -403,7 +803,7 @@
         const mbDone = (loadedBytes / (1024 * 1024)).toFixed(1);
         const percent = Math.min(99, ((loadedBytes / TOTAL_BYTES_APPROX) * 100)).toFixed(0);
         
-        statusText.textContent = `DOWNLOADING GAME ASSETS: ${mbDone} MB / 912.8 MB (${percent}%)`;
+        statusText.textContent = `DOWNLOADING HOLLOW KNIGHT: ${mbDone} MB / 912.8 MB (${percent}%)`;
         progressFill.style.width = `${percent}%`;
       }
 
@@ -481,6 +881,7 @@
             progressFill.style.width = `${Math.round(progress * 100)}%`;
             statusText.textContent = `STARTING UNITY ENGINE: ${Math.round(progress * 100)}%`;
           }).then((unityInstance) => {
+            unityInstanceRef = unityInstance;
             const loaderOverlay = document.getElementById("game-loader-overlay");
             loaderOverlay.style.transition = "opacity 0.5s ease";
             loaderOverlay.style.opacity = "0";
@@ -505,3 +906,4 @@
   </script>
 </body>
 </html>
+
