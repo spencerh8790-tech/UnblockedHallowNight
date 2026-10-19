@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hollow Knight Free 4046 Edition</title>
+  <link rel="icon" href="https://cdn.jsdelivr.net/gh/aukak/hollow-knight@2fc2e7149f0d5b2609b135ab48f00fd973930635/TemplateData/favicon.ico">
+
+  <!-- ======================================================= -->
+  <!-- GOOGLE ADSENSE: Replace ca-pub-XXXXXXXXXXXXXXXX with your publisher ID -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+  <!-- ======================================================= -->
+
+  <style>
+    :root {
+      --bg-dark: #090a0f;
+      --sidebar-bg: #10121a;
+      --border-color: #1e2230;
+      --accent-color: #6366f1;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background-color: var(--bg-dark);
+      color: #fff;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    #app-container {
+      display: flex;
+      width: 100vw;
+      height: 100vh;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* FLOATING TOP-RIGHT FULLSCREEN BUTTON */
+    #fullscreen-btn {
+      position: fixed;
+      top: 14px;
+      right: 180px; /* offset slightly so it doesn't overlap right sidebar */
+      z-index: 1000;
+      background: rgba(30, 34, 53, 0.85);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #fff;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+      transition: all 0.2s ease;
+    }
+    #fullscreen-btn:hover {
+      background: var(--accent-color);
+      border-color: #818cf8;
+      transform: translateY(-1px);
+    }
+
+    /* SIDEBAR REAL ADS CONTAINERS (160px wide standard skyscraper) */
+    .ad-sidebar {
+      width: 170px;
+      height: 100%;
+      background: var(--sidebar-bg);
+      border-right: 1px solid var(--border-color);
+      border-left: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      padding: 8px 5px;
+      z-index: 100;
+      overflow: hidden;
+    }
+
+    .ad-label {
+      font-size: 10px;
+      letter-spacing: 1px;
+      color: #64748b;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .ad-box {
+      width: 160px;
+      height: 600px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px dashed rgba(255, 255, 255, 0.1);
+      border-radius: 4px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Google AdSense ins tag styling */
+    .adsbygoogle {
+      display: block !important;
+      width: 160px !important;
+      height: 600px !important;
+    }
+
+    /* Placeholder text shown when adsbygoogle hasn't rendered yet */
+    .ad-placeholder-hint {
+      position: absolute;
+      text-align: center;
+      font-size: 11px;
+      color: #475569;
+      pointer-events: none;
+      padding: 10px;
+      line-height: 1.4;
+    }
+
+    /* CENTER GAME DISPLAY */
+    #game-center-area {
+      flex: 1;
+      height: 100%;
+      display: flex;
+      position: relative;
+      background: #000;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    #game-frame-wrapper {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #unity-canvas {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      background: #000;
+      display: block;
+      outline: none;
+    }
+
+    /* GAME LOADING OVERLAY */
+    #game-loader-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at center, #181d29 0%, #080a10 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 50;
+      padding: 20px;
+    }
+
+    .loader-logo-title {
+      font-size: 40px;
+      font-weight: 900;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      background: linear-gradient(180deg, #ffffff 0%, #9ca3af 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 8px;
+    }
+
+    .loader-subtitle {
+      font-size: 14px;
+      color: #94a3b8;
+      margin-bottom: 24px;
+    }
+
+    .progress-bar-outer {
+      width: 80%;
+      max-width: 480px;
+      height: 14px;
+      background: #11141f;
+      border: 1px solid #334155;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 12px;
+    }
+
+    .progress-bar-inner {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, #6366f1, #a855f7, #ec4899);
+      border-radius: 10px;
+      transition: width 0.2s ease;
+      box-shadow: 0 0 12px rgba(168, 85, 247, 0.7);
+    }
+
+    .loader-status-text {
+      font-size: 13px;
+      color: #cbd5e1;
+      font-family: monospace;
+      margin-bottom: 16px;
+    }
+
+    .loader-controls-preview {
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid #334155;
+      border-radius: 8px;
+      padding: 12px 20px;
+      font-size: 12px;
+      color: #94a3b8;
+      display: flex;
+      gap: 16px;
+      margin-top: 10px;
+    }
+
+    .key-badge {
+      background: #1e293b;
+      color: #38bdf8;
+      padding: 2px 6px;
+      border-radius: 4px;
+      border: 1px solid #475569;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- SINGLE TOP MENU BUTTON: FULLSCREEN -->
+  <button id="fullscreen-btn" onclick="toggleFullscreen()" title="Toggle Fullscreen">
+    <span>⛶</span>
+    <span>Fullscreen</span>
+  </button>
+
+  <div id="app-container">
+
+    <!-- ============================================== -->
+    <!-- LEFT SIDEBAR: REAL GOOGLE ADSENSE SKYSCRAPER  -->
+    <!-- ============================================== -->
+    <aside class="ad-sidebar" id="left-sidebar">
+      <div class="ad-label">Advertisement</div>
+      <div class="ad-box">
+        <div class="ad-placeholder-hint">
+          <strong>Google Ad</strong><br>
+          160x600 Skyscraper
+        </div>
+        <!-- GOOGLE ADSENSE AD UNIT (LEFT) -->
+        <ins class="adsbygoogle"
+             style="display:inline-block;width:160px;height:600px;"
+             data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+             data-ad-slot="1234567890"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+      </div>
+    </aside>
+
+    <!-- ============================================== -->
+    <!-- CENTER: HOLLOW KNIGHT WEBGL GAME              -->
+    <!-- ============================================== -->
+    <main id="game-center-area">
+      <!-- Loading Screen -->
+      <div id="game-loader-overlay">
+        <div class="loader-logo-title">Hollow Knight</div>
+        <div class="loader-subtitle">Free 4046 Edition</div>
+        
+        <div class="progress-bar-outer">
+          <div class="progress-bar-inner" id="progress-bar-fill"></div>
+        </div>
+
+        <div class="loader-status-text" id="loader-status">
+          CONNECTING TO CDN ASSETS...
+        </div>
+
+        <div class="loader-controls-preview">
+          <div><span class="key-badge">WASD / Arrows</span> Move</div>
+          <div><span class="key-badge">Z</span> Jump</div>
+          <div><span class="key-badge">X</span> Attack</div>
+          <div><span class="key-badge">C</span> Dash</div>
+          <div><span class="key-badge">A</span> Soul / Spell</div>
+          <div><span class="key-badge">Esc</span> Pause</div>
+        </div>
+      </div>
+
+      <!-- Canvas Frame -->
+      <div id="game-frame-wrapper">
+        <canvas id="unity-canvas" tabindex="1"></canvas>
+      </div>
+    </main>
+
+    <!-- ============================================== -->
+    <!-- RIGHT SIDEBAR: REAL GOOGLE ADSENSE SKYSCRAPER -->
+    <!-- ============================================== -->
+    <aside class="ad-sidebar" id="right-sidebar">
+      <div class="ad-label">Advertisement</div>
+      <div class="ad-box">
+        <div class="ad-placeholder-hint">
+          <strong>Google Ad</strong><br>
+          160x600 Skyscraper
+        </div>
+        <!-- GOOGLE ADSENSE AD UNIT (RIGHT) -->
+        <ins class="adsbygoogle"
+             style="display:inline-block;width:160px;height:600px;"
+             data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+             data-ad-slot="0987654321"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- ============================================== -->
+  <!-- GAME ENGINE & INDEXEDDB SCRIPT                 -->
+  <!-- ============================================== -->
+  <script>
+    // --- FULLSCREEN HANDLER ---
+    function toggleFullscreen() {
+      const elem = document.getElementById('game-frame-wrapper');
+      if (!document.fullscreenElement) {
+        if (elem.requestFullscreen) {
+          elem.requestFullscreen();
+        } else if (elem.webkitRequestFullscreen) {
+          elem.webkitRequestFullscreen();
+        }
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        }
+      }
+    }
+
+    // --- INDEXEDDB CACHE SYSTEM ---
+    const DB_NAME = "cachedb";
+    const STORE_NAME = "files";
+
+    function openCacheDB() {
+      return new Promise((resolve, reject) => {
+        const req = indexedDB.open(DB_NAME, 1);
+        req.onupgradeneeded = () => {
+          const db = req.result;
+          if (!db.objectStoreNames.contains(STORE_NAME)) {
+            db.createObjectStore(STORE_NAME);
+          }
+        };
+        req.onsuccess = () => resolve(req.result);
+        req.onerror = () => reject(req.error);
+      });
+    }
+
+    async function saveToCache(key, blob) {
+      try {
+        const db = await openCacheDB();
+        return new Promise((resolve, reject) => {
+          const tx = db.transaction(STORE_NAME, "readwrite");
+          tx.objectStore(STORE_NAME).put(blob, key);
+          tx.oncomplete = () => resolve();
+          tx.onerror = () => reject(tx.error);
+        });
+      } catch (e) {
+        console.warn("IndexedDB cache save skipped:", e);
+      }
+    }
+
+    async function loadFromCache(key) {
+      try {
+        const db = await openCacheDB();
+        return new Promise((resolve, reject) => {
+          const tx = db.transaction(STORE_NAME, "readonly");
+          const req = tx.objectStore(STORE_NAME).get(key);
+          req.onsuccess = () => resolve(req.result || null);
+          req.onerror = () => reject(req.error);
+        });
+      } catch (e) {
+        return null;
+      }
+    }
+
+    // --- DOWNLOAD MERGER ---
+    const CDN_BASE = "https://cdn.jsdelivr.net/gh/aukak/hollow-knight@2fc2e7149f0d5b2609b135ab48f00fd973930635/";
+    const statusText = document.getElementById("loader-status");
+    const progressFill = document.getElementById("progress-bar-fill");
+    let loadedBytes = 0;
+    const TOTAL_BYTES_APPROX = 912.81 * 1024 * 1024;
+
+    async function fetchWithProgress(relativeUrl) {
+      const fullUrl = CDN_BASE + relativeUrl;
+      const response = await fetch(fullUrl);
+      if (!response.ok) throw new Error(`HTTP ${response.status} fetching ${relativeUrl}`);
+      
+      const reader = response.body.getReader();
+      let chunks = [];
+      let received = 0;
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        received += value.length;
+        loadedBytes += value.length;
+        chunks.push(value);
+        
+        const mbDone = (loadedBytes / (1024 * 1024)).toFixed(1);
+        const percent = Math.min(99, ((loadedBytes / TOTAL_BYTES_APPROX) * 100)).toFixed(0);
+        
+        statusText.textContent = `DOWNLOADING GAME ASSETS: ${mbDone} MB / 912.8 MB (${percent}%)`;
+        progressFill.style.width = `${percent}%`;
+      }
+
+      let fullBuffer = new Uint8Array(received);
+      let offset = 0;
+      for (let chunk of chunks) {
+        fullBuffer.set(chunk, offset);
+        offset += chunk.length;
+      }
+      return fullBuffer.buffer;
+    }
+
+    async function mergeFiles(fileParts, cacheKey) {
+      const cached = await loadFromCache(cacheKey);
+      if (cached) {
+        statusText.textContent = `LOADED ${cacheKey} FROM LOCAL CACHE! ⚡`;
+        return URL.createObjectURL(cached);
+      }
+      const buffers = await Promise.all(
+        fileParts.map(part => fetchWithProgress(part))
+      );
+      const mergedBlob = new Blob(buffers);
+      await saveToCache(cacheKey, mergedBlob);
+      return URL.createObjectURL(mergedBlob);
+    }
+
+    function getParts(file, start, end) {
+      let parts = [];
+      for (let i = start; i <= end; i++) {
+        parts.push(file + ".part" + i);
+      }
+      return parts;
+    }
+
+    // --- GAME BOOTSTRAP ---
+    (async () => {
+      try {
+        statusText.textContent = "CHECKING LOCAL CACHE & CDN...";
+        
+        const [dataUrl, wasmUrl] = await Promise.all([
+          mergeFiles(getParts("Build/hktruffled.data", 1, 45), "hktruffled.data"),
+          mergeFiles(getParts("Build/hktruffled.wasm", 1, 2), "hktruffled.wasm"),
+        ]);
+
+        statusText.textContent = "COMPILING WEBASSEMBLY ENGINE...";
+        progressFill.style.width = "99%";
+
+        const canvas = document.getElementById("unity-canvas");
+        const loaderUrl = CDN_BASE + "Build/hktruffled.loader.js";
+
+        const config = {
+          dataUrl: dataUrl,
+          frameworkUrl: CDN_BASE + "Build/hktruffled.framework.js",
+          codeUrl: wasmUrl,
+          streamingAssetsUrl: CDN_BASE + "StreamingAssets",
+          companyName: "Team Cherry & Truffled",
+          productName: "Hollow Knight",
+          productVersion: "1.1",
+        };
+
+        function resizeCanvas() {
+          const wrapper = document.getElementById("game-frame-wrapper");
+          canvas.width = wrapper.clientWidth;
+          canvas.height = wrapper.clientHeight;
+        }
+        resizeCanvas();
+        window.addEventListener("resize", resizeCanvas);
+
+        canvas.addEventListener("click", () => canvas.focus());
+
+        // Load Unity Loader Script
+        const script = document.createElement("script");
+        script.src = loaderUrl;
+        script.onload = () => {
+          statusText.textContent = "INITIALIZING HOLLOW KNIGHT UNITY INSTANCE...";
+          createUnityInstance(canvas, config, (progress) => {
+            progressFill.style.width = `${Math.round(progress * 100)}%`;
+            statusText.textContent = `STARTING UNITY ENGINE: ${Math.round(progress * 100)}%`;
+          }).then((unityInstance) => {
+            const loaderOverlay = document.getElementById("game-loader-overlay");
+            loaderOverlay.style.transition = "opacity 0.5s ease";
+            loaderOverlay.style.opacity = "0";
+            setTimeout(() => {
+              loaderOverlay.style.display = "none";
+              canvas.focus();
+            }, 500);
+          }).catch(async (err) => {
+            console.error("Unity Instance Error:", err);
+            statusText.textContent = "Failed to launch game: " + err;
+            alert("Error loading Unity WebGL: " + err);
+          });
+        };
+        document.body.appendChild(script);
+
+      } catch (err) {
+        console.error("Bootstrap Error:", err);
+        statusText.textContent = "Error loading assets: " + err.message;
+        alert("Download error: " + err.message);
+      }
+    })();
+  </script>
+</body>
+</html>
