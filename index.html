@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hollow Knight Free 4046 Edition - Unblocked</title>
+  <title>Hollow Knight Free 4046 Edition</title>
   <link rel="icon" href="https://cdn.jsdelivr.net/gh/aukak/hollow-knight@2fc2e7149f0d5b2609b135ab48f00fd973930635/TemplateData/favicon.ico">
 
   <!-- GOOGLE ADSENSE OFFICIAL SCRIPT -->
@@ -12,8 +12,8 @@
   <style>
     :root {
       --bg-dark: #08090d;
-      --sidebar-bg: #0f1118;
-      --border-color: #1e2230;
+      --sidebar-bg: #0e1017;
+      --border-color: #1a1e2b;
       --accent-color: #6366f1;
     }
 
@@ -33,66 +33,57 @@
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     }
 
-    #page-layout {
+    #app-container {
       display: flex;
-      flex-direction: column;
       width: 100vw;
       height: 100vh;
+      position: relative;
       overflow: hidden;
     }
 
-    /* TOP BANNER AD */
-    #top-ad-bar {
-      width: 100%;
-      height: 70px;
-      background: #0c0e14;
-      border-bottom: 1px solid var(--border-color);
+    /* FLOATING TOP FULLSCREEN & INTRO SKIP BUTTONS */
+    #top-action-bar {
+      position: fixed;
+      top: 10px;
+      right: 175px;
+      z-index: 1000;
       display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      flex-shrink: 0;
-      z-index: 500;
+      gap: 8px;
     }
 
-    /* FLOATING FULLSCREEN BUTTON */
-    #fullscreen-btn {
-      position: fixed;
-      top: 14px;
-      right: 185px;
-      z-index: 1000;
-      background: rgba(24, 27, 42, 0.9);
+    .top-action-btn {
+      background: rgba(20, 24, 38, 0.88);
       backdrop-filter: blur(8px);
       border: 1px solid rgba(255, 255, 255, 0.15);
       color: #fff;
-      padding: 6px 14px;
-      border-radius: 8px;
+      padding: 6px 12px;
+      border-radius: 6px;
       font-size: 12px;
       font-weight: 700;
       cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 6px;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+      gap: 5px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
       transition: all 0.2s ease;
     }
-    #fullscreen-btn:hover {
+    .top-action-btn:hover {
       background: var(--accent-color);
       transform: translateY(-1px);
     }
 
-    /* FULLSCREEN ESC TOAST NOTIFICATION */
+    /* ON-SCREEN TOAST */
     #esc-toast {
       position: fixed;
-      top: 24px;
+      top: 20px;
       left: 50%;
       transform: translateX(-50%);
-      background: rgba(15, 23, 42, 0.92);
+      background: rgba(15, 23, 42, 0.94);
       border: 1px solid rgba(255, 255, 255, 0.2);
       color: #f8fafc;
-      padding: 8px 18px;
+      padding: 7px 16px;
       border-radius: 20px;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 600;
       z-index: 999999;
       pointer-events: none;
@@ -101,18 +92,9 @@
       transition: opacity 0.3s ease;
     }
 
-    /* MAIN VIEWPORT */
-    #main-viewport {
-      display: flex;
-      flex: 1;
-      height: calc(100% - 130px);
-      position: relative;
-      overflow: hidden;
-    }
-
-    /* SIDEBAR HEAVY ADS (170px width) */
+    /* SIDEBAR PROPORTIONED ADS (160px Skyscraper fits any screen) */
     .ad-sidebar {
-      width: 170px;
+      width: 165px;
       height: 100%;
       background: var(--sidebar-bg);
       border-right: 1px solid var(--border-color);
@@ -120,26 +102,26 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: center;
       flex-shrink: 0;
-      padding: 8px 4px;
+      padding: 6px 2px;
       z-index: 100;
-      overflow-y: auto;
-      overflow-x: hidden;
-      gap: 10px;
-      scrollbar-width: thin;
+      overflow: hidden;
     }
 
     .ad-label {
       font-size: 9px;
       letter-spacing: 1px;
       color: #64748b;
-      margin-bottom: 2px;
+      margin-bottom: 4px;
       text-transform: uppercase;
       font-weight: 700;
     }
 
     .ad-box {
       width: 160px;
+      height: 600px;
+      max-height: 94vh;
       background: rgba(255, 255, 255, 0.02);
       border: 1px dashed rgba(255, 255, 255, 0.1);
       border-radius: 4px;
@@ -149,11 +131,7 @@
       justify-content: center;
       position: relative;
       overflow: hidden;
-      flex-shrink: 0;
     }
-    .ad-box-skyscraper { height: 600px; }
-    .ad-box-rectangle { height: 250px; }
-    .ad-box-small { height: 100px; }
 
     .adsbygoogle { display: block !important; }
 
@@ -163,11 +141,11 @@
       font-size: 10px;
       color: #475569;
       pointer-events: none;
-      padding: 6px;
+      padding: 8px;
       line-height: 1.3;
     }
 
-    /* CENTER GAME DISPLAY */
+    /* CENTER GAME VIEWPORT */
     #game-center-area {
       flex: 1;
       height: 100%;
@@ -197,21 +175,21 @@
       outline: none;
     }
 
-    /* HUGE GLOWING LOADING TEXT */
+    /* ANIMATED LOADING TEXT */
     .huge-loading-text {
-      font-size: 52px;
+      font-size: 40px;
       font-weight: 900;
-      letter-spacing: 8px;
+      letter-spacing: 6px;
       color: #ffffff;
-      text-shadow: 0 0 25px rgba(99, 102, 241, 1), 0 0 50px rgba(168, 85, 247, 0.8);
-      animation: pulseLoading 1.4s ease-in-out infinite alternate;
-      margin-bottom: 6px;
+      text-shadow: 0 0 20px rgba(99, 102, 241, 0.9);
+      animation: pulseLoading 1.3s ease-in-out infinite alternate;
+      margin-bottom: 4px;
       text-transform: uppercase;
     }
 
     @keyframes pulseLoading {
-      0% { opacity: 0.7; transform: scale(0.97); }
-      100% { opacity: 1; transform: scale(1.03); }
+      0% { opacity: 0.7; transform: scale(0.98); }
+      100% { opacity: 1; transform: scale(1.02); }
     }
 
     /* LOADING SCREEN OVERLAY */
@@ -221,106 +199,81 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: radial-gradient(circle at center, #181d29 0%, #080a10 100%);
+      background: radial-gradient(circle at center, #151824 0%, #080a10 100%);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       z-index: 50;
-      padding: 16px;
-      overflow-y: auto;
-    }
-
-    .loader-game-name {
-      font-size: 24px;
-      font-weight: 900;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      background: linear-gradient(180deg, #ffffff 0%, #9ca3af 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 8px;
+      padding: 12px;
     }
 
     .progress-bar-outer {
-      width: 85%;
-      max-width: 480px;
-      height: 14px;
+      width: 80%;
+      max-width: 420px;
+      height: 12px;
       background: #11141f;
       border: 1px solid #334155;
-      border-radius: 10px;
+      border-radius: 8px;
       overflow: hidden;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
     .progress-bar-inner {
       width: 0%;
       height: 100%;
       background: linear-gradient(90deg, #6366f1, #a855f7, #ec4899);
-      border-radius: 10px;
-      transition: width 0.2s ease;
-      box-shadow: 0 0 12px rgba(168, 85, 247, 0.7);
+      border-radius: 8px;
+      transition: width 0.15s ease;
+      box-shadow: 0 0 10px rgba(168, 85, 247, 0.7);
     }
 
     .loader-status-text {
-      font-size: 13px;
+      font-size: 12px;
       color: #cbd5e1;
       font-family: monospace;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
 
-    /* LOADING AD CONTAINER */
+    /* COMPACT LOADING AD CONTAINER (Fits 1366x768 screens perfectly) */
     .loader-ad-container {
-      margin: 8px 0;
+      margin: 6px 0;
       background: rgba(16, 18, 26, 0.95);
       border: 1px solid #2d3748;
       border-radius: 8px;
-      padding: 10px;
+      padding: 6px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.6);
-      width: 320px;
-      min-height: 270px;
+      width: 310px;
+      height: 270px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.6);
       position: relative;
     }
 
-    .loading-ad-banner {
+    .loading-ad-box {
       width: 300px;
       height: 250px;
-      background: linear-gradient(135deg, #1e1b4b, #311042);
+      background: linear-gradient(135deg, #1c1a3a, #2a1538);
       border: 1px dashed #6366f1;
-      border-radius: 6px;
+      border-radius: 4px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      text-align: center;
-      padding: 14px;
       position: relative;
-    }
-
-    .loading-ad-badge {
-      position: absolute;
-      top: 6px;
-      left: 6px;
-      background: #ef4444;
-      color: #fff;
-      font-size: 9px;
-      font-weight: bold;
-      padding: 2px 6px;
-      border-radius: 3px;
+      overflow: hidden;
     }
 
     .loader-controls-preview {
       background: rgba(15, 23, 42, 0.7);
       border: 1px solid #334155;
-      border-radius: 8px;
-      padding: 6px 14px;
+      border-radius: 6px;
+      padding: 5px 12px;
       font-size: 11px;
       color: #94a3b8;
       display: flex;
-      gap: 12px;
+      gap: 10px;
       margin-top: 6px;
       flex-wrap: wrap;
       justify-content: center;
@@ -329,24 +282,29 @@
     .key-badge {
       background: #1e293b;
       color: #38bdf8;
-      padding: 2px 6px;
+      padding: 1px 5px;
       border-radius: 4px;
       border: 1px solid #475569;
       font-weight: bold;
     }
 
-    /* BOTTOM BANNER AD */
-    #bottom-ad-bar {
-      width: 100%;
-      height: 60px;
-      background: #0c0e14;
-      border-top: 1px solid var(--border-color);
-      display: flex;
+    /* ======================================================== */
+    /* INTRO CUTSCENE SKIP & AD SCREEN                         */
+    /* ======================================================== */
+    #intro-ad-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(6, 8, 12, 0.97);
+      backdrop-filter: blur(12px);
+      z-index: 99990;
+      display: none;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      position: relative;
-      flex-shrink: 0;
-      z-index: 500;
+      padding: 16px;
     }
 
     /* 5-MINUTE AD BREAK MODAL */
@@ -356,263 +314,201 @@
       left: 0;
       width: 100vw;
       height: 100vh;
-      background: rgba(7, 9, 14, 0.96);
+      background: rgba(6, 8, 12, 0.97);
       backdrop-filter: blur(12px);
       z-index: 99999;
       display: none;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 20px;
+      padding: 16px;
     }
 
-    .ad-break-badge {
+    .ad-modal-badge {
       background: #ef4444;
       color: #fff;
       font-size: 11px;
       font-weight: 800;
-      padding: 4px 12px;
+      padding: 3px 10px;
       border-radius: 4px;
       letter-spacing: 1px;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
       text-transform: uppercase;
     }
 
-    .ad-break-title {
-      font-size: 26px;
+    .ad-modal-title {
+      font-size: 24px;
       font-weight: 800;
       color: #fff;
       margin-bottom: 4px;
     }
 
-    .ad-break-subtitle {
-      font-size: 13px;
+    .ad-modal-subtitle {
+      font-size: 12px;
       color: #94a3b8;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
 
-    .ad-break-box {
+    .ad-modal-box {
+      width: 310px;
+      height: 260px;
       background: #131722;
       border: 1px solid #2e3852;
       border-radius: 8px;
-      padding: 10px;
+      padding: 5px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin-bottom: 16px;
+      justify-content: center;
+      margin-bottom: 14px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.7);
     }
 
-    #ad-break-skip-btn {
+    .modal-skip-btn {
       background: #334155;
       color: #94a3b8;
       border: none;
-      padding: 10px 24px;
-      border-radius: 8px;
-      font-size: 14px;
+      padding: 9px 22px;
+      border-radius: 6px;
+      font-size: 13px;
       font-weight: 700;
       cursor: not-allowed;
       transition: all 0.2s;
     }
-    #ad-break-skip-btn.can-skip {
+    .modal-skip-btn.can-skip {
       background: #10b981;
       color: #fff;
       cursor: pointer;
-      box-shadow: 0 0 16px rgba(16, 185, 129, 0.6);
+      box-shadow: 0 0 14px rgba(16, 185, 129, 0.6);
     }
-    #ad-break-skip-btn.can-skip:hover {
+    .modal-skip-btn.can-skip:hover {
       background: #059669;
-      transform: scale(1.04);
+      transform: scale(1.03);
     }
   </style>
 </head>
 <body>
 
-  <!-- ON-SCREEN ESCAPE FULLSCREEN TOAST -->
-  <div id="esc-toast">ESC: Game Menu &bull; Press ESC again to Exit Fullscreen</div>
+  <!-- TOAST NOTIFICATION -->
+  <div id="esc-toast">ESC: Pause &bull; Press ESC again to Exit Fullscreen</div>
 
-  <!-- FLOATING FULLSCREEN BUTTON -->
-  <button id="fullscreen-btn" onclick="toggleFullscreen()" title="Toggle Fullscreen">
-    <span>⛶ Fullscreen</span>
-  </button>
+  <!-- FLOATING TOP BUTTONS -->
+  <div id="top-action-bar">
+    <button class="top-action-btn" onclick="triggerIntroSkipAd()" title="Skip Broken Cutscene & Load Gameplay">
+      <span>🎬 Skip Intro Cutscene (Ad)</span>
+    </button>
+    <button class="top-action-btn" onclick="toggleFullscreen()" title="Toggle Fullscreen">
+      <span>⛶ Fullscreen</span>
+    </button>
+  </div>
 
-  <div id="page-layout">
+  <div id="app-container">
 
-    <!-- TOP LEADERBOARD AD BANNER -->
-    <header id="top-ad-bar">
+    <!-- LEFT SIDEBAR: REAL GOOGLE ADSENSE (PROPORTIONED TO FIT) -->
+    <aside class="ad-sidebar" id="left-sidebar">
+      <div class="ad-label">Advertisement</div>
+      <div class="ad-box">
+        <div class="ad-placeholder-hint"><strong>Google Ad</strong><br>160x600 Skyscraper</div>
+        <ins class="adsbygoogle"
+             style="display:inline-block;width:160px;height:600px;"
+             data-ad-client="ca-pub-9627446045765085"
+             data-ad-slot="1234567890"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+    </aside>
+
+    <!-- CENTER GAME VIEWPORT -->
+    <main id="game-center-area">
+      
+      <!-- FAST LOADING OVERLAY -->
+      <div id="game-loader-overlay">
+        <div class="huge-loading-text">LOADING...</div>
+        <div style="font-size:16px; font-weight:bold; color:#cbd5e1; margin-bottom:8px;">Hollow Knight 4046 Edition</div>
+
+        <div class="progress-bar-outer">
+          <div class="progress-bar-inner" id="progress-bar-fill"></div>
+        </div>
+
+        <div class="loader-status-text" id="loader-status">
+          CONNECTING TO CDN ASSETS...
+        </div>
+
+        <!-- COMPACT LOADING SCREEN AD -->
+        <div class="loader-ad-container">
+          <div class="ad-label">Sponsored While Loading</div>
+          <div class="loading-ad-box">
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:300px;height:250px;"
+                 data-ad-client="ca-pub-9627446045765085"
+                 data-ad-slot="1234567892"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+          </div>
+        </div>
+
+        <div class="loader-controls-preview">
+          <div><span class="key-badge">WASD / Arrows</span> Move</div>
+          <div><span class="key-badge">Z</span> Jump</div>
+          <div><span class="key-badge">X</span> Attack</div>
+          <div><span class="key-badge">C</span> Dash</div>
+          <div><span class="key-badge">A</span> Soul / Heal</div>
+          <div><span class="key-badge">Tab</span> or <span class="key-badge">M</span> Map</div>
+          <div><span class="key-badge">Esc</span> Pause</div>
+        </div>
+      </div>
+
+      <!-- Canvas Frame -->
+      <div id="game-frame-wrapper">
+        <canvas id="unity-canvas" tabindex="1"></canvas>
+      </div>
+    </main>
+
+    <!-- RIGHT SIDEBAR: REAL GOOGLE ADSENSE (PROPORTIONED TO FIT) -->
+    <aside class="ad-sidebar" id="right-sidebar">
+      <div class="ad-label">Advertisement</div>
+      <div class="ad-box">
+        <div class="ad-placeholder-hint"><strong>Google Ad</strong><br>160x600 Skyscraper</div>
+        <ins class="adsbygoogle"
+             style="display:inline-block;width:160px;height:600px;"
+             data-ad-client="ca-pub-9627446045765085"
+             data-ad-slot="0987654321"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- INTRO CUTSCENE SKIP & AD SCREEN -->
+  <div id="intro-ad-overlay">
+    <div class="ad-modal-badge">Cutscene Skip</div>
+    <div class="ad-modal-title">🎬 Loading King's Pass...</div>
+    <div class="ad-modal-subtitle">Skipping broken video cutscene &bull; Jumping straight into gameplay</div>
+
+    <div class="ad-modal-box">
       <ins class="adsbygoogle"
-           style="display:inline-block;width:728px;height:60px;"
+           style="display:inline-block;width:300px;height:250px;"
            data-ad-client="ca-pub-9627446045765085"
-           data-ad-slot="1234567888"
-           data-ad-format="horizontal"
+           data-ad-slot="1234567896"
+           data-ad-format="auto"
            data-full-width-responsive="true"></ins>
-      <script>
-        (adsbygoogle = window.adsbygoogle || []).push({});
-      </script>
-    </header>
-
-    <!-- MAIN VIEWPORT: LEFT ADS + HOLLOW KNIGHT + RIGHT ADS -->
-    <div id="main-viewport">
-
-      <!-- LEFT SIDEBAR: 3 STACKED REAL GOOGLE ADS -->
-      <aside class="ad-sidebar" id="left-sidebar">
-        <div class="ad-label">Advertisement</div>
-        
-        <!-- LEFT AD 1: 160x600 Skyscraper -->
-        <div class="ad-box ad-box-skyscraper">
-          <div class="ad-placeholder-hint"><strong>Google Ad</strong><br>160x600 Skyscraper</div>
-          <ins class="adsbygoogle"
-               style="display:inline-block;width:160px;height:600px;"
-               data-ad-client="ca-pub-9627446045765085"
-               data-ad-slot="1234567890"
-               data-ad-format="auto"
-               data-full-width-responsive="true"></ins>
-          <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-        </div>
-
-        <!-- LEFT AD 2: 160x250 Banner -->
-        <div class="ad-box ad-box-rectangle">
-          <div class="ad-placeholder-hint"><strong>Google Ad</strong><br>160x250 Banner</div>
-          <ins class="adsbygoogle"
-               style="display:inline-block;width:160px;height:250px;"
-               data-ad-client="ca-pub-9627446045765085"
-               data-ad-slot="1234567891"
-               data-ad-format="auto"
-               data-full-width-responsive="true"></ins>
-          <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-        </div>
-
-        <!-- LEFT AD 3: 160x100 Mini Ad -->
-        <div class="ad-box ad-box-small">
-          <div class="ad-placeholder-hint"><strong>Google Ad</strong><br>160x100 Ad</div>
-          <ins class="adsbygoogle"
-               style="display:inline-block;width:160px;height:100px;"
-               data-ad-client="ca-pub-9627446045765085"
-               data-ad-slot="1234567893"
-               data-ad-format="auto"
-               data-full-width-responsive="true"></ins>
-          <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-        </div>
-      </aside>
-
-      <!-- CENTER: HOLLOW KNIGHT WEBGL ENGINE -->
-      <main id="game-center-area">
-        
-        <!-- LOADING SCREEN WITH HUGE TEXT & PROMINENT ADS -->
-        <div id="game-loader-overlay">
-          <div class="huge-loading-text">LOADING...</div>
-          <div class="loader-game-name">Hollow Knight</div>
-
-          <div class="progress-bar-outer">
-            <div class="progress-bar-inner" id="progress-bar-fill"></div>
-          </div>
-
-          <div class="loader-status-text" id="loader-status">
-            CONNECTING TO CDN ASSETS...
-          </div>
-
-          <!-- PROMINENT LOADING SCREEN AD -->
-          <div class="loader-ad-container">
-            <div class="ad-label" style="margin-bottom:6px;">Advertisement &bull; Sponsor While Loading</div>
-            
-            <div class="loading-ad-banner">
-              <span class="loading-ad-badge">SPONSORED</span>
-              <div style="font-size:16px; font-weight:800; color:#facc15; margin-bottom:4px;">🎮 Free Cloud Gaming Network</div>
-              <div style="font-size:11px; color:#cbd5e1; margin-bottom:10px;">High-speed unblocked servers powered by Google Ads</div>
-              
-              <!-- Real Google AdSense Unit (Overlays or fills container) -->
-              <ins class="adsbygoogle"
-                   style="display:inline-block;width:300px;height:250px;"
-                   data-ad-client="ca-pub-9627446045765085"
-                   data-ad-slot="1234567892"
-                   data-ad-format="auto"
-                   data-full-width-responsive="true"></ins>
-              <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-            </div>
-          </div>
-
-          <div class="loader-controls-preview">
-            <div><span class="key-badge">WASD / Arrows</span> Move</div>
-            <div><span class="key-badge">Z</span> Jump</div>
-            <div><span class="key-badge">X</span> Attack</div>
-            <div><span class="key-badge">C</span> Dash</div>
-            <div><span class="key-badge">A</span> Soul / Heal</div>
-            <div><span class="key-badge">Tab</span> or <span class="key-badge">M</span> Quick Map</div>
-            <div><span class="key-badge">Esc</span> Pause / Menu</div>
-          </div>
-        </div>
-
-        <!-- Canvas Frame -->
-        <div id="game-frame-wrapper">
-          <canvas id="unity-canvas" tabindex="1"></canvas>
-        </div>
-      </main>
-
-      <!-- RIGHT SIDEBAR: 3 STACKED REAL GOOGLE ADS -->
-      <aside class="ad-sidebar" id="right-sidebar">
-        <div class="ad-label">Advertisement</div>
-        
-        <!-- RIGHT AD 1: 160x600 Skyscraper -->
-        <div class="ad-box ad-box-skyscraper">
-          <div class="ad-placeholder-hint"><strong>Google Ad</strong><br>160x600 Skyscraper</div>
-          <ins class="adsbygoogle"
-               style="display:inline-block;width:160px;height:600px;"
-               data-ad-client="ca-pub-9627446045765085"
-               data-ad-slot="0987654321"
-               data-ad-format="auto"
-               data-full-width-responsive="true"></ins>
-          <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-        </div>
-
-        <!-- RIGHT AD 2: 160x250 Banner -->
-        <div class="ad-box ad-box-rectangle">
-          <div class="ad-placeholder-hint"><strong>Google Ad</strong><br>160x250 Banner</div>
-          <ins class="adsbygoogle"
-               style="display:inline-block;width:160px;height:250px;"
-               data-ad-client="ca-pub-9627446045765085"
-               data-ad-slot="0987654322"
-               data-ad-format="auto"
-               data-full-width-responsive="true"></ins>
-          <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-        </div>
-
-        <!-- RIGHT AD 3: 160x100 Mini Ad -->
-        <div class="ad-box ad-box-small">
-          <div class="ad-placeholder-hint"><strong>Google Ad</strong><br>160x100 Ad</div>
-          <ins class="adsbygoogle"
-               style="display:inline-block;width:160px;height:100px;"
-               data-ad-client="ca-pub-9627446045765085"
-               data-ad-slot="0987654323"
-               data-ad-format="auto"
-               data-full-width-responsive="true"></ins>
-          <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-        </div>
-      </aside>
-
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
 
-    <!-- BOTTOM LEADERBOARD AD BANNER -->
-    <footer id="bottom-ad-bar">
-      <ins class="adsbygoogle"
-           style="display:inline-block;width:728px;height:50px;"
-           data-ad-client="ca-pub-9627446045765085"
-           data-ad-slot="1234567899"
-           data-ad-format="horizontal"
-           data-full-width-responsive="true"></ins>
-      <script>
-        (adsbygoogle = window.adsbygoogle || []).push({});
-      </script>
-    </footer>
-
+    <button class="modal-skip-btn" id="intro-skip-btn" onclick="closeIntroAd()">Skip in 4s...</button>
   </div>
 
   <!-- 5-MINUTE AD BREAK MODAL -->
   <div id="ad-break-overlay">
-    <div class="ad-break-badge">Commercial Break</div>
-    <div class="ad-break-title">📺 5-Minute Ad Break</div>
-    <div class="ad-break-subtitle">Supporting free Hollow Knight unblocked servers &bull; Resuming shortly</div>
+    <div class="ad-modal-badge">Commercial Break</div>
+    <div class="ad-modal-title">📺 5-Minute Ad Break</div>
+    <div class="ad-modal-subtitle">Supporting free unblocked game servers &bull; Resuming shortly</div>
 
-    <div class="ad-break-box">
+    <div class="ad-modal-box">
       <ins class="adsbygoogle"
            style="display:inline-block;width:300px;height:250px;"
            data-ad-client="ca-pub-9627446045765085"
@@ -622,11 +518,11 @@
       <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
 
-    <button id="ad-break-skip-btn" onclick="closeAdBreak()">Skip Ad in 5s...</button>
+    <button class="modal-skip-btn" id="ad-break-skip-btn" onclick="closeAdBreak()">Skip Ad in 5s...</button>
   </div>
 
   <!-- ============================================== -->
-  <!-- GAME ENGINE, MAP FIX, DOUBLE-ESC FULLSCREEN   -->
+  <!-- GAME ENGINE SCRIPT                             -->
   <!-- ============================================== -->
   <script>
     // --- FULLSCREEN & DOUBLE-ESC HANDLER ---
@@ -653,11 +549,10 @@
         if (elem.requestFullscreen) await elem.requestFullscreen();
         else if (elem.webkitRequestFullscreen) await elem.webkitRequestFullscreen();
         
-        // Lock Escape key so single ESC opens game pause menu without browser exiting
         if (navigator.keyboard && navigator.keyboard.lock) {
           try { await navigator.keyboard.lock(['Escape']); } catch(e){}
         }
-        showEscToast("Fullscreen Enabled • Press ESC for Menu • Double-tap ESC to Exit");
+        showEscToast("Fullscreen Active • Press ESC for Menu • Double-tap ESC to Exit");
       } else {
         if (document.exitFullscreen) await document.exitFullscreen();
         if (navigator.keyboard && navigator.keyboard.unlock) {
@@ -675,7 +570,6 @@
         if (document.fullscreenElement) {
           const now = Date.now();
           if (now - lastEscPress < 800) {
-            // Second press within 800ms: EXIT FULLSCREEN!
             e.preventDefault();
             lastEscPress = 0;
             if (document.exitFullscreen) document.exitFullscreen();
@@ -684,7 +578,6 @@
             }
             return;
           } else {
-            // First press: open in-game pause menu and notify user
             lastEscPress = now;
             showEscToast("Press ESC again to Exit Fullscreen & open page menu");
             if (canvas) {
@@ -713,6 +606,49 @@
       }
     }, { passive: false });
 
+    // --- INTRO CUTSCENE SKIP & AD BREAK ---
+    let introCountdown = 4;
+    let introInterval = null;
+
+    function triggerIntroSkipAd() {
+      const overlay = document.getElementById('intro-ad-overlay');
+      const btn = document.getElementById('intro-skip-btn');
+      overlay.style.display = 'flex';
+      introCountdown = 4;
+      btn.className = 'modal-skip-btn';
+      btn.disabled = true;
+      btn.textContent = `Skip in ${introCountdown}s...`;
+
+      try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch(e){}
+
+      if (introInterval) clearInterval(introInterval);
+      introInterval = setInterval(() => {
+        introCountdown--;
+        if (introCountdown > 0) {
+          btn.textContent = `Skip in ${introCountdown}s...`;
+        } else {
+          clearInterval(introInterval);
+          btn.disabled = false;
+          btn.className = 'modal-skip-btn can-skip';
+          btn.textContent = 'ENTER GAMEPLAY ▶';
+        }
+      }, 1000);
+    }
+
+    function closeIntroAd() {
+      const btn = document.getElementById('intro-skip-btn');
+      if (btn.disabled) return;
+      document.getElementById('intro-ad-overlay').style.display = 'none';
+      if (introInterval) clearInterval(introInterval);
+      const canvas = document.getElementById('unity-canvas');
+      if (canvas) {
+        canvas.focus();
+        // Send Enter/Space/Escape to skip the video cutscene in game
+        canvas.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', code: 'Escape', keyCode: 27, bubbles: true }));
+        canvas.dispatchEvent(new KeyboardEvent('keydown', { key: ' ', code: 'Space', keyCode: 32, bubbles: true }));
+      }
+    }
+
     // --- 5-MINUTE RECURRING AD BREAK ---
     const AD_BREAK_INTERVAL_MS = 5 * 60 * 1000;
     let skipCountdown = 5;
@@ -725,7 +661,7 @@
       const btn = document.getElementById('ad-break-skip-btn');
       overlay.style.display = 'flex';
       skipCountdown = 5;
-      btn.className = '';
+      btn.className = 'modal-skip-btn';
       btn.disabled = true;
       btn.textContent = `Skip Ad in ${skipCountdown}s...`;
 
@@ -739,7 +675,7 @@
         } else {
           clearInterval(skipInterval);
           btn.disabled = false;
-          btn.className = 'can-skip';
+          btn.className = 'modal-skip-btn can-skip';
           btn.textContent = 'SKIP AD & RESUME GAME ▶';
         }
       }, 1000);
@@ -800,6 +736,7 @@
       }
     }
 
+    // --- FASTER BATCHED DOWNLOADS ---
     const CDN_BASE = "https://cdn.jsdelivr.net/gh/aukak/hollow-knight@2fc2e7149f0d5b2609b135ab48f00fd973930635/";
     const statusText = document.getElementById("loader-status");
     const progressFill = document.getElementById("progress-bar-fill");
@@ -822,10 +759,10 @@
         loadedBytes += value.length;
         chunks.push(value);
         
-        const mbDone = (loadedBytes / (1024 * 1024)).toFixed(1);
+        const mbDone = (loadedBytes / (1024 * 1024)).toFixed(0);
         const percent = Math.min(99, ((loadedBytes / TOTAL_BYTES_APPROX) * 100)).toFixed(0);
         
-        statusText.textContent = `DOWNLOADING HOLLOW KNIGHT: ${mbDone} MB / 912.8 MB (${percent}%)`;
+        statusText.textContent = `DOWNLOADING HOLLOW KNIGHT: ${mbDone} MB / 913 MB (${percent}%)`;
         progressFill.style.width = `${percent}%`;
       }
 
@@ -838,15 +775,22 @@
       return fullBuffer.buffer;
     }
 
-    async function mergeFiles(fileParts, cacheKey) {
+    // Batched merger to prevent browser connection saturation
+    async function mergeFilesBatched(fileParts, cacheKey) {
       const cached = await loadFromCache(cacheKey);
       if (cached) {
-        statusText.textContent = `LOADED ${cacheKey} FROM LOCAL CACHE! ⚡`;
+        statusText.textContent = `LOADED ${cacheKey} FROM CACHE! ⚡`;
         return URL.createObjectURL(cached);
       }
-      const buffers = await Promise.all(
-        fileParts.map(part => fetchWithProgress(part))
-      );
+      
+      const BATCH_SIZE = 4;
+      const buffers = [];
+      for (let i = 0; i < fileParts.length; i += BATCH_SIZE) {
+        const batch = fileParts.slice(i, i + BATCH_SIZE);
+        const batchResults = await Promise.all(batch.map(part => fetchWithProgress(part)));
+        buffers.push(...batchResults);
+      }
+      
       const mergedBlob = new Blob(buffers);
       await saveToCache(cacheKey, mergedBlob);
       return URL.createObjectURL(mergedBlob);
@@ -865,11 +809,11 @@
         statusText.textContent = "CHECKING LOCAL CACHE & CDN...";
         
         const [dataUrl, wasmUrl] = await Promise.all([
-          mergeFiles(getParts("Build/hktruffled.data", 1, 45), "hktruffled.data"),
-          mergeFiles(getParts("Build/hktruffled.wasm", 1, 2), "hktruffled.wasm"),
+          mergeFilesBatched(getParts("Build/hktruffled.data", 1, 45), "hktruffled.data"),
+          mergeFilesBatched(getParts("Build/hktruffled.wasm", 1, 2), "hktruffled.wasm"),
         ]);
 
-        statusText.textContent = "COMPILING WEBASSEMBLY ENGINE...";
+        statusText.textContent = "INITIALIZING WEBASSEMBLY...";
         progressFill.style.width = "99%";
 
         const canvas = document.getElementById("unity-canvas");
@@ -903,16 +847,14 @@
             progressFill.style.width = `${Math.round(progress * 100)}%`;
             statusText.textContent = `LOADING GAME: ${Math.round(progress * 100)}%`;
           }).then((unityInstance) => {
-            // Keep loading screen and ads visible for minimum 2.5 seconds so loading ads are enjoyed
+            // Immediate smooth transition into game once ready!
+            const loaderOverlay = document.getElementById("game-loader-overlay");
+            loaderOverlay.style.transition = "opacity 0.4s ease";
+            loaderOverlay.style.opacity = "0";
             setTimeout(() => {
-              const loaderOverlay = document.getElementById("game-loader-overlay");
-              loaderOverlay.style.transition = "opacity 0.6s ease";
-              loaderOverlay.style.opacity = "0";
-              setTimeout(() => {
-                loaderOverlay.style.display = "none";
-                canvas.focus();
-              }, 600);
-            }, 2500);
+              loaderOverlay.style.display = "none";
+              canvas.focus();
+            }, 400);
           }).catch(async (err) => {
             console.error("Unity Instance Error:", err);
             statusText.textContent = "Failed to launch game: " + err;
