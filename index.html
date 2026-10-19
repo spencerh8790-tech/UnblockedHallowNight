@@ -6,11 +6,8 @@
   <title>Hollow Knight Free 4046 Edition</title>
   <link rel="icon" href="https://cdn.jsdelivr.net/gh/aukak/hollow-knight@2fc2e7149f0d5b2609b135ab48f00fd973930635/TemplateData/favicon.ico">
 
-  <!-- ======================================================= -->
-  <!-- GOOGLE ADSENSE: Replace ca-pub-XXXXXXXXXXXXXXXX with your publisher ID -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=<script async src="<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9627446045765085"
-     crossorigin="anonymous"></script>"
-  <!-- ======================================================= -->
+  <!-- GOOGLE ADSENSE OFFICIAL SCRIPT -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9627446045765085" crossorigin="anonymous"></script>
 
   <style>
     :root {
@@ -48,7 +45,7 @@
     #fullscreen-btn {
       position: fixed;
       top: 14px;
-      right: 180px; /* offset slightly so it doesn't overlap right sidebar */
+      right: 180px;
       z-index: 1000;
       background: rgba(30, 34, 53, 0.85);
       backdrop-filter: blur(8px);
@@ -71,7 +68,7 @@
       transform: translateY(-1px);
     }
 
-    /* SIDEBAR REAL ADS CONTAINERS (160px wide standard skyscraper) */
+    /* SIDEBAR ADS CONTAINERS (160px wide standard skyscraper) */
     .ad-sidebar {
       width: 170px;
       height: 100%;
@@ -111,14 +108,12 @@
       overflow: hidden;
     }
 
-    /* Google AdSense ins tag styling */
     .adsbygoogle {
       display: block !important;
       width: 160px !important;
       height: 600px !important;
     }
 
-    /* Placeholder text shown when adsbygoogle hasn't rendered yet */
     .ad-placeholder-hint {
       position: absolute;
       text-align: center;
@@ -251,9 +246,7 @@
 
   <div id="app-container">
 
-    <!-- ============================================== -->
-    <!-- LEFT SIDEBAR: REAL GOOGLE ADSENSE SKYSCRAPER  -->
-    <!-- ============================================== -->
+    <!-- LEFT SIDEBAR: REAL GOOGLE ADSENSE SKYSCRAPER -->
     <aside class="ad-sidebar" id="left-sidebar">
       <div class="ad-label">Advertisement</div>
       <div class="ad-box">
@@ -261,10 +254,9 @@
           <strong>Google Ad</strong><br>
           160x600 Skyscraper
         </div>
-        <!-- GOOGLE ADSENSE AD UNIT (LEFT) -->
         <ins class="adsbygoogle"
              style="display:inline-block;width:160px;height:600px;"
-             data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+             data-ad-client="ca-pub-9627446045765085"
              data-ad-slot="1234567890"
              data-ad-format="auto"
              data-full-width-responsive="true"></ins>
@@ -274,11 +266,8 @@
       </div>
     </aside>
 
-    <!-- ============================================== -->
-    <!-- CENTER: HOLLOW KNIGHT WEBGL GAME              -->
-    <!-- ============================================== -->
+    <!-- CENTER: HOLLOW KNIGHT WEBGL GAME -->
     <main id="game-center-area">
-      <!-- Loading Screen -->
       <div id="game-loader-overlay">
         <div class="loader-logo-title">Hollow Knight</div>
         <div class="loader-subtitle">Free 4046 Edition</div>
@@ -301,15 +290,12 @@
         </div>
       </div>
 
-      <!-- Canvas Frame -->
       <div id="game-frame-wrapper">
         <canvas id="unity-canvas" tabindex="1"></canvas>
       </div>
     </main>
 
-    <!-- ============================================== -->
     <!-- RIGHT SIDEBAR: REAL GOOGLE ADSENSE SKYSCRAPER -->
-    <!-- ============================================== -->
     <aside class="ad-sidebar" id="right-sidebar">
       <div class="ad-label">Advertisement</div>
       <div class="ad-box">
@@ -317,10 +303,9 @@
           <strong>Google Ad</strong><br>
           160x600 Skyscraper
         </div>
-        <!-- GOOGLE ADSENSE AD UNIT (RIGHT) -->
         <ins class="adsbygoogle"
              style="display:inline-block;width:160px;height:600px;"
-             data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+             data-ad-client="ca-pub-9627446045765085"
              data-ad-slot="0987654321"
              data-ad-format="auto"
              data-full-width-responsive="true"></ins>
@@ -332,11 +317,7 @@
 
   </div>
 
-  <!-- ============================================== -->
-  <!-- GAME ENGINE & INDEXEDDB SCRIPT                 -->
-  <!-- ============================================== -->
   <script>
-    // --- FULLSCREEN HANDLER ---
     function toggleFullscreen() {
       const elem = document.getElementById('game-frame-wrapper');
       if (!document.fullscreenElement) {
@@ -352,7 +333,6 @@
       }
     }
 
-    // --- INDEXEDDB CACHE SYSTEM ---
     const DB_NAME = "cachedb";
     const STORE_NAME = "files";
 
@@ -398,7 +378,6 @@
       }
     }
 
-    // --- DOWNLOAD MERGER ---
     const CDN_BASE = "https://cdn.jsdelivr.net/gh/aukak/hollow-knight@2fc2e7149f0d5b2609b135ab48f00fd973930635/";
     const statusText = document.getElementById("loader-status");
     const progressFill = document.getElementById("progress-bar-fill");
@@ -459,7 +438,6 @@
       return parts;
     }
 
-    // --- GAME BOOTSTRAP ---
     (async () => {
       try {
         statusText.textContent = "CHECKING LOCAL CACHE & CDN...";
@@ -495,7 +473,6 @@
 
         canvas.addEventListener("click", () => canvas.focus());
 
-        // Load Unity Loader Script
         const script = document.createElement("script");
         script.src = loaderUrl;
         script.onload = () => {
